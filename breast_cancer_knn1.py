@@ -65,4 +65,23 @@ print(f"Predict time      : {predict_time:.6f} s")             # time to predict
 print(f"Predict time/prob.: {proba_time:.6f} s")               # time to compute probabilities
 print(f"Per-sample latency: {per_sample_ms:.4f} ms ({n_test} samples)")
 
+# part4_evaluate.py
+
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, roc_auc_score
+
+# ---- Accuracy ----
+acc = accuracy_score(y_test, y_pred)
+print("Accuracy:", acc)
+
+# ---- AUC (requires y_proba from predict_proba) ----
+auc = roc_auc_score(y_test, y_proba)
+print("AUC:", auc)
+
+# ---- Confusion Matrix ----
+cm = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:\n", cm)
+
+# ---- Detailed classification report ----
+cr = classification_report(y_test, y_pred, digits=4)
+print("Classification Report:\n", cr)
 
